@@ -21,12 +21,13 @@ class LinkedList:
         return output + 'None'
 
     def insert(self, value):
-        node = Node(value)
+        # node = Node(value)
 
-        if self.head is not None:
-            node.next = self.head
+        # if self.head is not None:
+        #     node.next = self.head
+        # self.head = Node
 
-        self.head = Node
+        self.head = Node(value, self.head)
     
     def includes(self, value):
         current = self.head
@@ -67,7 +68,20 @@ class LinkedList:
             current = current.next
             return
 
+    def insert_after(self, value, new_val):
+        new_node = Node(new_val)
+        current = self.head
+        
+        if current is None:
+            self.insert(new_node)
+            return
 
+        while current is not None:
+            if current.value == value:
+                new_node.next = current.next
+                current.next = new_node
+            current = current.next
+            return
 
 
 if __name__ == "__main__":
