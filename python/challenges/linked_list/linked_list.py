@@ -84,6 +84,9 @@ class LinkedList:
             return
 
 
+
+
+
 if __name__ == "__main__":
     new_node = Node(1)
     new_linked = LinkedList()
