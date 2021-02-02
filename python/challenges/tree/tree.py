@@ -8,23 +8,34 @@ class BinaryTree:
     def __init__(self, root = None):
         self.root = root
 
+# Pre-order: root >> left >> right
 # preOrder
-    def pre_order(self):
-        def traverse(root):
+    def pre_order(self, action = None):
+        new_list = []
+        def traverse(root, action):
+            # root_array.append(root.value)
             # if there is no node there then exit
             if not root:
-                return
-            # print root first
-            print(root.value)
-            # traverse left
-            traverse(root.left)
-            # traverse right
-            traverse(root.right)
-        traverse(self.root)
+                return "No root to be found."
 
+            # print root first
+            # print(root.value)
+            # for action do this instead**all action just added
+            action(root.value)
+            # traverse left
+            traverse(root.left, action)
+            # traverse right
+            traverse(root.right, action)
+        traverse(self.root, action or print)
+
+# In-order: left >> root >> right
 # inOrder
     def in_order(self):
         def traverse(root):
+            if not root:
+                return "No root to be found."
+                                
+            new_list = []
 
             # traverse left
             if root.left:
@@ -35,9 +46,15 @@ class BinaryTree:
                 traverse(root.right)
         traverse(self.root)
 
+# Post-order: left >> right >> root
 # postOrder
     def post_order(self):
         def traverse(root):
+            if not root:
+                return "No root to be found."
+
+            # root array
+            # root_array = []
 
             # traverse left
             if root.left:
@@ -47,6 +64,25 @@ class BinaryTree:
                 traverse(root.right)
             print(root.value)
         traverse(self.root)
+
+
+# find maximum value in a tree
+    def find_maximum_value(self):
+        max_value = self.root.value
+        def traverse(root):
+
+            nonlocal max_value
+
+            if root.value > max_value:
+                max_value = root.value
+
+            if root.left:
+                traverse(root.left)
+
+            if root.right:
+                traverse(root.right)
+        traverse(self.root)
+        return max_value
 
 class BinarySearchTree(BinaryTree):
     def __init__(self, root = None):
@@ -74,23 +110,23 @@ class BinarySearchTree(BinaryTree):
         # return true if the value is in the tree or false otherwise
         pass
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 
-#     a = Node("A")        
-#     b = Node("B")        
-#     c = Node("C")        
-#     d = Node("D")        
-#     e = Node("E")        
-#     f = Node("F")   
+    a = Node("A")        
+    b = Node("B")        
+    c = Node("C")        
+    d = Node("D")        
+    e = Node("E")        
+    f = Node("F")   
 
-#     b.left = d
-#     b.right = e
-#     c.left = f
+    b.left = d
+    b.right = e
+    c.left = f
 
-#     tree = BinaryTree(Node("A"))
-#     tree = BinarySearchTree(Node("A"))
-#     tree.root.left = b
-#     tree.root.right = c 
+    tree = BinaryTree(Node("A"))
+    tree = BinarySearchTree(Node("A"))
+    tree.root.left = b
+    tree.root.right = c 
     # print(tree.root.value)
     # print(tree.root.left.value)
     # print(tree.root.right.value)
@@ -98,6 +134,7 @@ class BinarySearchTree(BinaryTree):
     # tree.pre_order()
     # tree.in_order()
     # tree.post_order()
+    trre.find_maximum_value()
 
     # ******
     # tree.add('d')
