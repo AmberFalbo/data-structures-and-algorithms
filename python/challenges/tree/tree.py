@@ -1,3 +1,5 @@
+# from stacks_and_queues.stacks_and_queues import Queue
+
 class Node:
     def __init__(self, value = None, left = None, right = None):
         self.value = value
@@ -84,6 +86,14 @@ class BinaryTree:
         traverse(self.root)
         return max_value
 
+    # def breadth_first(self):
+    #     new_list = []
+    #     def traverse(root):
+        
+    #     traverse(self.root)
+
+
+
 class BinarySearchTree(BinaryTree):
     def __init__(self, root = None):
         self.root = root
@@ -134,7 +144,7 @@ if __name__ == "__main__":
     # tree.pre_order()
     # tree.in_order()
     # tree.post_order()
-    trre.find_maximum_value()
+    tree.find_maximum_value()
 
     # ******
     # tree.add('d')
