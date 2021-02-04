@@ -13,6 +13,7 @@ class Stack():
     # FILO
     def __init__(self, node = None):
         self.top = node
+        self.counter = 0
         
     def push(self, value):
         # create node from value
@@ -21,27 +22,27 @@ class Stack():
         node.next = self.top
         # assign node to top
         self.top = node
+        self.counter += 1
 
 
     def pop(self):
-      if self.is_empty():
-          raise InvalidOperationError("Method no allowed on empty collection")
-      # create temp node
-      # assign top to the temp node
-      node = self.top
-      # top reassign it to top.next
-      self.top = self.top.next
-      # return value of temp node
-      return node.value
+        if self.is_empty():
+            raise InvalidOperationError("Method not allowed on empty collection")
+        node = self.top
+        self.top = self.top.next
+        self.counter -= 1
+        return node.value
 
     def is_empty(self):
-        return True
+        if self.top is None:
+            return True
+        else:
+            return False
 
     def peek(self):
         if self.is_empty():
-          raise InvalidOperationError("Method no allowed on empty collection")
+            raise InvalidOperationError("Method not allowed on empty collection")
         return self.top.value
-      
 
 
 class Queue():
@@ -49,4 +50,34 @@ class Queue():
     def __init__(self):
         self.front = None
         self.rear = None
+        self.counter = 0
+    
+    def enqueue(self, value):
+        node = Node(value)
+        if self.is_empty():
+            self.front = node
+            self.rear = node
+        else:
+            self.rear.next = node
+            self.rear = node
+        self.counter +=1
+    
+    def dequeue(self):
+        if self.is_empty():
+            raise InvalidOperationError("Method not allowed on empty collection")
+        node = self.front
+        self.front = self.front.next
+        self.counter -= 1
+        return node.value
+
+    def peek(self):
+        if self.is_empty():
+            raise InvalidOperationError("Method not allowed on empty collection")
+        return self.front.value
+
+    def is_empty(self):
+        if self.front is None:
+            return True
+        else:
+            return False
 
