@@ -1,4 +1,4 @@
-# from stacks_and_queues.stacks_and_queues import Queue
+from ..stacks_and_queues.stacks_and_queues import Queue
 
 class Node:
     def __init__(self, value = None, left = None, right = None):
@@ -24,11 +24,18 @@ class BinaryTree:
             # print(root.value)
             # for action do this instead**all action just added
             action(root.value)
-            # traverse left
-            traverse(root.left, action)
-            # traverse right
-            traverse(root.right, action)
+            # adding to list
+            new_list.append(root.value)
+            if root.left != None:
+                # traverse left
+                traverse(root.left, action)
+            
+            if root.right != None:
+                # traverse right
+                traverse(root.right, action)
+
         traverse(self.root, action or print)
+        return new_list
 
 # In-order: left >> root >> right
 # inOrder
@@ -86,11 +93,21 @@ class BinaryTree:
         traverse(self.root)
         return max_value
 
-    # def breadth_first(self):
-    #     new_list = []
-    #     def traverse(root):
-        
-    #     traverse(self.root)
+    def breadth_first(self):
+        q = Queue()
+        new_list = []
+
+        node = self.root
+        q.enqueue(node)
+        while q.counter > 0:
+            node = q.dequeue()
+            new_list.append(node.value)
+            if node.left != None:
+                q.enqueue(node.left)
+            if node.right != None:
+                q.enqueue(node.right)
+        return new_list    
+
 
 
 

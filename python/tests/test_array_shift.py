@@ -1,5 +1,5 @@
 from challenges.array_shift.array_shift import insert_shift_array
-
+import pytest
 
 def test_insert_shift_array_even_len():
     actual = insert_shift_array(3, [1, 2, 4, 5])

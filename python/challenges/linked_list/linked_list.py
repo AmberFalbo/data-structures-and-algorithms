@@ -80,6 +80,7 @@ class LinkedList:
             if current.value == value:
                 new_node.next = current.next
                 current.next = new_node
+                break
             current = current.next
             return
 
