@@ -11,18 +11,11 @@ class BinaryTree:
         self.root = root
 
 # Pre-order: root >> left >> right
-# preOrder
     def pre_order(self, action = None):
         new_list = []
         def traverse(root, action):
-            # root_array.append(root.value)
-            # if there is no node there then exit
             if not root:
                 return "No root to be found."
-
-            # print root first
-            # print(root.value)
-            # for action do this instead**all action just added
             action(root.value)
             # adding to list
             new_list.append(root.value)
@@ -38,41 +31,45 @@ class BinaryTree:
         return new_list
 
 # In-order: left >> root >> right
-# inOrder
-    def in_order(self):
-        def traverse(root):
+    def in_order(self, action = None):
+        new_list = []
+        def traverse(root, action):
             if not root:
                 return "No root to be found."
-                                
-            new_list = []
+            action(root.value)
+            if root.left != None:
+                # traverse left
+                traverse(root.left, action)
 
-            # traverse left
-            if root.left:
-                traverse(root.left)
-            print(root.value)
-            # traverse right
-            if root.right:
-                traverse(root.right)
-        traverse(self.root)
+            # adding to list
+            new_list.append(root.value)
+            
+            if root.right != None:
+                # traverse right
+                traverse(root.right, action)
+
+        traverse(self.root, action or print)
+        return new_list
 
 # Post-order: left >> right >> root
-# postOrder
-    def post_order(self):
-        def traverse(root):
+    def post_order(self, action = None):
+        new_list = []
+        def traverse(root, action):
             if not root:
                 return "No root to be found."
+            action(root.value)
+            if root.left != None:
+                # traverse left
+                traverse(root.left, action)
+        
+            if root.right != None:
+                # traverse right
+                traverse(root.right, action)
 
-            # root array
-            # root_array = []
-
-            # traverse left
-            if root.left:
-                traverse(root.left)
-            # traverse right
-            if root.right:
-                traverse(root.right)
-            print(root.value)
-        traverse(self.root)
+            # adding to list
+            new_list.append(root.value)
+        traverse(self.root, action or print)
+        return new_list
 
 
 # find maximum value in a tree
@@ -115,23 +112,23 @@ class BinarySearchTree(BinaryTree):
     def __init__(self, root = None):
         self.root = root
 
-    # def add(self, value):
-    #   def traverse(root, value):
+    def add(self, value):
+        def traverse(root, value):
 
-    #       if self.root.value:
-    #           if value < self.root.value:
-    #               if self.root.left is None:
-    #                   self.root.left = Node(value)
-    #               else:
-    #                   self.root.left = Node(value)
-    #           elif value > self.root.value:
-    #               if self.root.right is None:
-    #                   self.root.right = Node(value)
-    #               else:
-    #                   self.root.right = Node(value)
-    #       else:
-    #           self.value = value
-    #   traverse(self.root)
+            if self.root.value:
+                if value < self.root.value:
+                    if self.root.left is None:
+                        self.root.left = Node(value)
+                    else:
+                        self.root.left = Node(value)
+                elif value > self.root.value:
+                    if self.root.right is None:
+                        self.root.right = Node(value)
+                    else:
+                        self.root.right = Node(value)
+            else:
+                self.value = value
+        traverse(self.root, value)
 
     def contains(self,value):
         # return true if the value is in the tree or false otherwise
