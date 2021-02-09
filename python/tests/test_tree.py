@@ -1,10 +1,6 @@
-# from challenges.tree.tree import __version__
 import pytest
 from challenges.tree.tree import Node, BinaryTree, BinarySearchTree
 import builtins
-
-# def test_version():
-#     assert __version__ == '0.1.0'
 
 
 # ********** BinaryTree Tests ********* 
