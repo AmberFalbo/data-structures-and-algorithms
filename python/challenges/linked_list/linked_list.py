@@ -4,6 +4,8 @@ class Node:
         self.value = value
         self.next = next
 
+class InvalidOperationError(BaseException):
+    pass
 
 class LinkedList:
 
@@ -83,6 +85,35 @@ class LinkedList:
                 break
             current = current.next
             return
+
+    def kth_from_end(self, k):
+        if k < 0:
+            raise InvalidOperationError("k needs to be positive")
+        current = self.head
+        counter = 0
+
+        while current != None:
+            counter += 1
+            current = current.next
+        
+        if counter <= 1:
+            raise InvalidOperationError("list length is just a lonely node")
+
+        if k >= counter:
+            raise InvalidOperationError("k is greater then length of list")
+        
+        counter -= k
+        current = self.head
+        new_node_val = 0
+
+        while counter > 1:
+            current = current.next
+            counter -= 1
+
+            if counter == 1:
+                new_node_val = current.value
+        return new_node_val
+        
 
 
 

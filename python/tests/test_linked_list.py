@@ -1,4 +1,4 @@
-from challenges.linked_list.linked_list import LinkedList, Node
+from challenges.linked_list.linked_list import LinkedList, Node, InvalidOperationError
 import pytest
 
 
@@ -59,14 +59,53 @@ def test_insert_before():
 #     assert actual == expected
 
 
-@pytest.fixture
-def generate_new_list():
-    node = Node(0)
-    new_list = LinkedList(node)
-    list_length = 0
+def test_kth_from_end_expected_return():
+    test_list = LinkedList()
+    test_list.append(1)
+    test_list.append(3)
+    test_list.append(8)
+    test_list.append(2)
+    actual = test_list.kth_from_end(0)
+    expected = 2
+    assert actual == expected
 
-    for value in range(1,5):
-        new_list.insert(value)
-        list_length += 1
+def test_kth_from_end_expected_return_two_back():
+    test_list = LinkedList()
+    test_list.append(1)
+    test_list.append(3)
+    test_list.append(8)
+    test_list.append(2)
+    actual = test_list.kth_from_end(2)
+    expected = 3
+    assert actual == expected
 
-    return new_list
+def test_kth_from_end_error():
+    test_list = LinkedList()
+    test_list.append(1)
+    test_list.append(3)
+    test_list.append(8)
+    test_list.append(2)
+
+    with pytest.raises(InvalidOperationError) as e:
+        test_list.kth_from_end(7)
+    assert str(e.value) == "k is greater then length of list"
+
+def test_kth_from_end_be_posi():
+    test_list = LinkedList()
+    test_list.append(1)
+    test_list.append(3)
+    test_list.append(8)
+    test_list.append(2)
+
+    with pytest.raises(InvalidOperationError) as e:
+        test_list.kth_from_end(-1)
+    assert str(e.value) == "k needs to be positive"
+
+def test_kth_from_end_lonely():
+    test_list = LinkedList()
+    test_list.append(1)
+
+
+    with pytest.raises(InvalidOperationError) as e:
+        test_list.kth_from_end(2)
+    assert str(e.value) == "list length is just a lonely node"
