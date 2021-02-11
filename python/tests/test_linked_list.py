@@ -6,6 +6,27 @@ def test_import():
     assert LinkedList
     assert Node
 
+def test_str():
+    test_list = LinkedList()
+    test_list.append(8)
+    test_list.append(6)
+    test_list.append(7)
+    test_list.append(5)
+    test_list.append(3)
+    test_list.append(0)
+    test_list.append(9)
+    actual = test_list.__str__()
+    expected = f'{{ 8 }} -> {{ 6 }} -> {{ 7 }} -> {{ 5 }} -> {{ 3 }} -> {{ 0 }} -> {{ 9 }} -> None'
+    assert actual == expected
+
+
+def test_insert():
+    test_list = LinkedList() 
+    test_list.insert(3)
+    actual = test_list.head.value
+    expected = 3
+    assert actual == expected   
+
 # add a node to the end of the linked list
 def test_append():
     node = Node(0)
