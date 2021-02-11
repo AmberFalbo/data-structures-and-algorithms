@@ -21,11 +21,11 @@ class LinkedList:
         return output + 'None'
 
     def insert(self, value):
-        # node = Node(value)
+        node = Node(value)
 
-        # if self.head is not None:
-        #     node.next = self.head
-        # self.head = Node
+        if self.head is not None:
+            node.next = self.head
+        self.head = Node
 
         self.head = Node(value, self.head)
     
