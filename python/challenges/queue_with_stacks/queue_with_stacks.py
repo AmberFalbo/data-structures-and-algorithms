@@ -5,4 +5,5 @@ class PseudoQueue():
         self.stack1 = stack1
         self.stack2 = stack2
     
-    def enqueue()
+    def enqueue():
+        pass
