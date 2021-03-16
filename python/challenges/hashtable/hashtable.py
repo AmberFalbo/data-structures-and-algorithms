@@ -1,4 +1,4 @@
-from class_linked_list import LinkedList
+from .class_linked_list import LinkedList
 
 class Hashtable:
 
@@ -8,19 +8,15 @@ class Hashtable:
 
     def _hash(self, key):
         sum = 0
-        
         for ch in key:
             sum += ord(ch)
         
         primed = sum * 19
-
         index = primed % self.size
 
         return index
 
-# using set instead of add in the assignment because wont it call recursivly or error with the add and .add?
-    def set(self, key, value):
-        pass
+    def add(self, key, value):
         hashed_key_index = self._hash(key)
 
         if not self._buckets[hashed_key_index]:
@@ -29,8 +25,25 @@ class Hashtable:
         self._buckets[hashed_key_index].add((key, value))
 
     def get(self, requested_key):
-        pass
+        index = self._hash(requested_key)
+
+        if self._buckets[index]:
+            current = self._buckets[index].head
+            while current:
+                if current.data[0] == requested_key:
+                    return current.data[1]
+                current = current.next
+            # return self._buckets[index].head.data[1]
+
+    def contains(self, key):
+        for i in range(len(self._buckets)):
+            if self._buckets[i]:
+                current = self._buckets[i].head
+                while current:
+                    if current.data[0] == key:
+                        return True
+                    current = current.next
+        return False
 
 
-    def contains(self):
-        pass
+
