@@ -10,13 +10,14 @@ class Hashtable:
         sum = 0
         for ch in key:
             sum += ord(ch)
+            # sum = sum + ord(ch)
         
         primed = sum * 19
         index = primed % self.size
 
         return index
 
-    def add(self, key, value):
+    def add_hash(self, key, value):
         hashed_key_index = self._hash(key)
 
         if not self._buckets[hashed_key_index]:
