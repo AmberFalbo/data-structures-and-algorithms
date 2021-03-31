@@ -38,14 +38,14 @@ def test_different_hash():
 
 def test_add_and_get():
     hashtable = Hashtable()
-    hashtable.add('luci', 'terror')
+    hashtable.add_hash('luci', 'terror')
     actual = hashtable.get('luci')
     expected = 'terror'
     assert actual == expected
 
 def test_contains():
     hashtable = Hashtable()
-    hashtable.add('luci', 'terror')
+    hashtable.add_hash('luci', 'terror')
     actual = hashtable.contains('luci')
     expected = True
     assert actual == expected
