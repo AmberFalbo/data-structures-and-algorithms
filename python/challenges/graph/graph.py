@@ -27,11 +27,19 @@ class Graph:
         adjacencies.append(edge)
 
     def get_node(self):
-        pass
+        vetices = self._adjacency_list.keys()
+        return vetices
 
-    def get_neighbor(self):
-        pass
+    def get_neighbor(self, vertex):
+        if vertex not in self._adjacency_list:
+            raise KeyError(f'{vertex} not a vertex in {self}')
 
     def size(self):
         return len(self._adjacency_list)
+
+    def breadth_first(self, node):
+        pass
+
+    def get_edge(self, node):
+        pass
 

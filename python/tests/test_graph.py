@@ -33,7 +33,7 @@ def test_size():
     expected = 2
     actual = graph.size()
     assert actual == expected
- 
+
 def test_size_fail():
     graph = Graph()
     a = graph.add_node('a')
@@ -41,3 +41,13 @@ def test_size_fail():
     expected = 3
     actual = graph.size()
     assert actual != expected
+
+def test_add_edge_error():
+    graph = Graph()
+    start = graph.add_node("start")
+    end = graph.add_node("end")
+    graph.add_edge(start, end)
+    try:
+        graph.add_edge(start, end)
+    except KeyError:
+        pytest.fail("KeyError should not be thrown")    
